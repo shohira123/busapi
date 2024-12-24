@@ -1,0 +1,22 @@
+// [
+//     {
+//         "scheduleid": "673aedd2a5eb7ad14417dcfb",
+//         "bookedseat": [
+//             1,
+//             2
+//         ]
+//     }
+// ]
+// [
+//     {
+//         "scheduleid":"67358f5f6dcc766c0f4953af",
+//         "custid":"123",
+//         "bookingdate":"2024-11-14",
+//         "busbookingpassengers":[
+//             {
+//                 "seatno":"3"
+//             }
+//         ]
+        
+//     }
+// ]
