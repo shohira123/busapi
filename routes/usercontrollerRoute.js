@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { useraccount, checkexpiry } = require("../controller/useraccountController")
+const { useraccount, checkexpiry, account } = require("../controller/useraccountController")
 require("../middleware/verifytoken");
 
 router.route("/useraccount/:uid/:bid").post(useraccount);
+router.route("/account/:uid").post(account);
 router.route("/checkexpiry").post(checkexpiry);
 // router.route("/Booking",).post(booking);
 // function verifyToken(req, res, next) {

@@ -15,8 +15,11 @@
 // module.exports = connectdb;
 
 const mongoose = require("mongoose");
+require("dotenv").config();
+// const mongodb_URL = "mongodb://localhost:27017/busdb";
+const mongodb_URL = "mongodb://0.0.0.0:27017/busdb";
 // mongoose.connect("mongodb://localhost:27017/studentdb",{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true}).then(()=>{
-mongoose.connect("mongodb://localhost:27017/busdb").then(() => {
+mongoose.connect(mongodb_URL).then(() => {
 
     console.log("connected");
 }).catch((e) => {

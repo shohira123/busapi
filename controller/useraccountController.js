@@ -36,6 +36,31 @@ const useraccount = async (req, res) => {
     }
 }
 // useraccount end
+// account start
+const account = async (req, res) => {
+    try {
+        uid = req.params.uid;
+        console.log(uid);
+        const mydata = await bookingmodel.aggregate([{
+            $match: {
+                $and: [
+
+                    { custid: mongoose.Types.ObjectId.createFromHexString(uid) },
+                ]
+            },
+            // { sort: { datetime: -1 } }
+        }]).sort({ "bookingdate": -1 })
+        console.log(mydata);
+        res.status(200).send({ msg: "token is set to account", data: mydata })
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+}
+// account end
+
+
 // checkexpiry start
 const checkexpiry = async (req, res) => {
     try {
@@ -63,4 +88,4 @@ const checkexpiry = async (req, res) => {
 //         res.status(400).send(error);
 //     }
 // }
-module.exports = { useraccount, checkexpiry }
+module.exports = { useraccount, checkexpiry, account }
