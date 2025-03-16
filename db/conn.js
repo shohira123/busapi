@@ -17,11 +17,12 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 // const mongodb_URL = "mongodb://localhost:27017/busdb";
-const mongodb_URL = "mongodb://0.0.0.0:27017/busdb";
+// const mongodb_URL = "mongodb://0.0.0.0:27017/busdb";
 // mongoose.connect("mongodb://localhost:27017/studentdb",{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true}).then(()=>{
-mongoose.connect(mongodb_URL).then(() => {
+const MONGODB_URI = process.env.MONGODB_URI;
+mongoose.connect(MONGODB_URI).then(() => {
 
     console.log("connected");
 }).catch((e) => {
-    console.log("not connected");
+    console.log(e);
 })

@@ -1,12 +1,13 @@
 require("./db/conn");
 require("dotenv").config();
+const getlocationsRoute = require("./routes/getlocationsRoute");
+const usercontrollerRoute = require("./routes/usercontrollerRoute");
+const authenticateToken = require("./middleware/verifytoken");
 const express = require("express");
 
 const app = express();
 const PORT = process.env.PORT || 1113;
-const getlocationsRoute = require("./routes/getlocationsRoute");
-const usercontrollerRoute = require("./routes/usercontrollerRoute");
-const authenticateToken = require("./middleware/verifytoken");
+
 var cors = require('cors');
 
 // console.log(dbcon);
