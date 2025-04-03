@@ -91,8 +91,8 @@ const searchbus = async (req, res) => {
             {
                 $match: {
                     $and: [
-                        { fromLocation: mongoose.Types.ObjectId.createFromHexString(fromLocation) },
-                        { toLocation: mongoose.Types.ObjectId.createFromHexString(toLocation) },
+                        { fromLocation: mongoose.Types.ObjectId(fromLocation) },
+                        { toLocation: mongoose.Types.ObjectId(toLocation) },
                         { scheduleDate: travelDate }
                     ]
                 }
