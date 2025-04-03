@@ -25,7 +25,7 @@ mongoose.connect(MONGODB_URI).then(() => {
 
     console.log("connected");
 }).catch((e) => {
-    console.log("issue");
+    console.log(e);
 })
 // mongoose.connect(process.env.MONGODB_URI, {
 //     useNewUrlParser: true,

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getAllLocation, createLocation, createVendor, createbusschedule, searchbus, searchallbus, searchbusbyid, searchSeatById, booking, addnewuser, loginuser, updateSeatById, postBookSeat } = require("../controller/getlocationController");
+const { getAllLocation, createLocation, createVendor, createbusschedule, searchbus, searchallbus, searchbusbyid, searchSeatById, booking, addnewuser, loginuser, updateSeatById, postBookSeat } = require("../controller/Controller");
 
 router.route("/getLocations").get(getAllLocation);
 router.route("/createLocation").post(createLocation);

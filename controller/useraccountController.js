@@ -18,14 +18,49 @@ const useraccount = async (req, res) => {
         console.log(req.params);
         uid = req.params.uid;
         bid = req.params.bid;
-        const mydata = await bookingmodel.aggregate([{
-            $match: {
-                $and: [
-                    { _id: mongoose.Types.ObjectId.createFromHexString(bid) },
-                    { custid: mongoose.Types.ObjectId.createFromHexString(uid) },
-                ]
-            }
-        }])
+        const mydata = await bookingmodel.aggregate([
+            {
+                $match: {
+                    $and: [
+                        { _id: mongoose.Types.ObjectId.createFromHexString(bid) },
+                        { custid: mongoose.Types.ObjectId.createFromHexString(uid) },
+                    ]
+                }
+
+            }, // match end
+            {
+                $lookup: {
+                    from: "postbusschedules", // the name of the second collection (scheduletbl)
+                    localField: "scheduleid", // field from bookingmodel to match on
+                    foreignField: "_id", // field in scheduletbl to match on (assuming bookingId is the reference to the booking)
+                    as: "location_info" // the name of the new array field that will contain the joined documents
+                }
+            },
+            {
+                $unwind: {
+                    path: "$location_info", // If you want to flatten the result, use unwind
+                    preserveNullAndEmptyArrays: true // Ensure documents still return even if no match is found
+                }
+            },
+
+            // {
+            //     $lookup: {
+            //         from: "getbuslocation", // the name of the locationtable collection
+            //         localField: "location_info.fromLocation", // field from schedule_info to match on
+            //         foreignField: "_id", // field in locationtable to match on (assuming the location ID is stored in _id)
+            //         as: "from_location_info" // new field with from location details
+            //     }
+            // },
+            // {
+            //     $lookup: {
+            //         from: "getbuslocation", // again for tolocation
+            //         localField: "location_info.toLocation", // field from schedule_info to match on
+            //         foreignField: "_id", // field in locationtable to match on
+            //         as: "to_location_info" // new field with to location details
+            //     }
+            // }
+
+        ])
         if (mydata) {
             res.status(200).send(mydata);
         }

@@ -1,6 +1,6 @@
 require("./db/conn");
 require("dotenv").config();
-const getlocationsRoute = require("./routes/getlocationsRoute");
+const Route = require("./routes/Route");
 const usercontrollerRoute = require("./routes/usercontrollerRoute");
 const authenticateToken = require("./middleware/verifytoken");
 const express = require("express");
@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 app.use(express.json())
 app.use(cors());
 
-app.use("/busapi", getlocationsRoute);
+app.use("/busapi", Route);
 app.use("/busapi/user", authenticateToken, usercontrollerRoute);
 
 app.listen(PORT, () => {

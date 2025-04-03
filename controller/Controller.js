@@ -1,5 +1,5 @@
 
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const location = require("../model/getlocation");
 const vendor = require("../model/vendormodel");
