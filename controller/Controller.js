@@ -74,7 +74,7 @@ const createbusschedule = async (req, res) => {
 const searchbus = async (req, res) => {
     try {
         console.log(req.params);
-        fromLocation = req.params.fromLocatgition;
+        fromLocation = req.params.fromLocation;
         toLocation = req.params.toLocation;
         travelDate = req.params.travelDate;
         // fromLocation = fromLocation;
@@ -88,6 +88,8 @@ const searchbus = async (req, res) => {
         const mydata = await schedule.aggregate([
             // { $match: { "fromLocation": fromLocation, "toLocation": toLocation, "scheduleDate": travelDate } },
             // { $match: { $or: [ { score: { $gt: 70, $lt: 90 } }, { views: { $gte: 1000 } } ] } },
+
+
             {
                 $match: {
                     $and: [
