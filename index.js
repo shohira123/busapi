@@ -9,7 +9,9 @@ const app = express();
 const PORT = process.env.PORT || 1113;
 
 var cors = require('cors');
-
+app.use(cors({
+    origin: '*' // or you can specify 'http://localhost:4200' to only allow that
+}));
 // console.log(dbcon);
 app.get("/", (req, res) => {
     res.send("get api");
