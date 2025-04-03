@@ -73,7 +73,7 @@ const createbusschedule = async (req, res) => {
 // search bus start
 const searchbus = async (req, res) => {
     try {
-        // console.log(req.params);
+        console.log(req.params);
         fromLocation = req.params.fromLocation;
         toLocation = req.params.toLocation;
         travelDate = req.params.travelDate;
