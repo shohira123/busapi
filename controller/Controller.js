@@ -1,5 +1,5 @@
 
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const location = require("../model/getlocation");
 const vendor = require("../model/vendormodel");
@@ -74,7 +74,7 @@ const createbusschedule = async (req, res) => {
 const searchbus = async (req, res) => {
     try {
         console.log(req.params);
-        fromLocation = req.params.fromLocation;
+        fromLocation = req.params.fromLocatgition;
         toLocation = req.params.toLocation;
         travelDate = req.params.travelDate;
         // fromLocation = fromLocation;
