@@ -43,22 +43,22 @@ const useraccount = async (req, res) => {
                 }
             },
 
-            // {
-            //     $lookup: {
-            //         from: "getbuslocation", // the name of the locationtable collection
-            //         localField: "location_info.fromLocation", // field from schedule_info to match on
-            //         foreignField: "_id", // field in locationtable to match on (assuming the location ID is stored in _id)
-            //         as: "from_location_info" // new field with from location details
-            //     }
-            // },
-            // {
-            //     $lookup: {
-            //         from: "getbuslocation", // again for tolocation
-            //         localField: "location_info.toLocation", // field from schedule_info to match on
-            //         foreignField: "_id", // field in locationtable to match on
-            //         as: "to_location_info" // new field with to location details
-            //     }
-            // }
+            {
+                $lookup: {
+                    from: "getbuslocation", // the name of the locationtable collection
+                    localField: "location_info.fromLocation", // field from schedule_info to match on
+                    foreignField: "_id", // field in locationtable to match on (assuming the location ID is stored in _id)
+                    as: "from_location_info" // new field with from location details
+                }
+            },
+            {
+                $lookup: {
+                    from: "getbuslocation", // again for tolocation
+                    localField: "location_info.toLocation", // field from schedule_info to match on
+                    foreignField: "_id", // field in locationtable to match on
+                    as: "to_location_info" // new field with to location details
+                }
+            }
 
         ])
         if (mydata) {
