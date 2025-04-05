@@ -61,7 +61,7 @@ const useraccount = async (req, res) => {
                 $project: {
                     _id: 1,  // Include the booking model _id
                     scheduleDetails: "$location_info", // Include location_info from postbusschedules
-                    fromLocationName: "$from_location_info.Location",
+                    fromLocationName: "from_location_info.Location",
                     // fromLocationName: { $arrayElemAt: ["$from_location_info.Location", 0] }, // Get the location name from from_location_info
                     toLocationName: { $arrayElemAt: ["$to_location_info.Location", 0] }, // Get the location name from to_location_info
                     // Add any other fields you need from the booking model here
