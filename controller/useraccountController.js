@@ -44,7 +44,7 @@ const useraccount = async (req, res) => {
             {
                 $lookup: {
                     from: "getbuslocation", // the name of the locationtable collection
-                    localField: "$location_info.fromLocation", // field from postbusschedule to match on
+                    localField: "location_info.fromLocation", // field from postbusschedule to match on
                     foreignField: "_id", // field in getbuslocation to match on (ObjectId)
                     as: "from_location_info" // new field with from location details
                 }
@@ -52,7 +52,7 @@ const useraccount = async (req, res) => {
             {
                 $lookup: {
                     from: "getbuslocation", // again for toLocation
-                    localField: "$location_info.toLocation", // field from postbusschedule to match on
+                    localField: "location_info.toLocation", // field from postbusschedule to match on
                     foreignField: "_id", // field in getbuslocation to match on
                     as: "to_location_info" // new field with to location details
                 }
@@ -61,8 +61,8 @@ const useraccount = async (req, res) => {
                 $project: {
                     _id: 1,  // Include the booking model _id
                     scheduleDetails: "$location_info", // Include location_info from postbusschedules
-                    fromLocationName: { $arrayElemAt: ["$from_location_info.name", 0] }, // Get the location name from from_location_info
-                    toLocationName: { $arrayElemAt: ["$to_location_info.name", 0] }, // Get the location name from to_location_info
+                    fromLocationName: { $arrayElemAt: ["$from_location_info.Location", 0] }, // Get the location name from from_location_info
+                    toLocationName: { $arrayElemAt: ["$to_location_info.Location", 0] }, // Get the location name from to_location_info
                     // Add any other fields you need from the booking model here
                 }
             }
