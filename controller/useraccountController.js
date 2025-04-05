@@ -26,41 +26,48 @@ const useraccount = async (req, res) => {
                         { custid: mongoose.Types.ObjectId.createFromHexString(uid) },
                     ]
                 }
-
-            }, // match end
+            },
             {
                 $lookup: {
                     from: "postbusschedules", // the name of the second collection (scheduletbl)
                     localField: "scheduleid", // field from bookingmodel to match on
-                    foreignField: "_id", // field in scheduletbl to match on (assuming bookingId is the reference to the booking)
+                    foreignField: "_id", // field in scheduletbl to match on
                     as: "location_info" // the name of the new array field that will contain the joined documents
                 }
             },
             {
                 $unwind: {
-                    path: "$location_info", // If you want to flatten the result, use unwind
+                    path: "$location_info", // Flatten the result
                     preserveNullAndEmptyArrays: true // Ensure documents still return even if no match is found
                 }
             },
-
             {
                 $lookup: {
                     from: "getbuslocation", // the name of the locationtable collection
-                    localField: "location_info.fromLocation", // field from schedule_info to match on
-                    foreignField: "_id", // field in locationtable to match on (assuming the location ID is stored in _id)
+                    localField: "location_info.fromLocation", // field from postbusschedule to match on
+                    foreignField: "_id", // field in getbuslocation to match on (ObjectId)
                     as: "from_location_info" // new field with from location details
                 }
             },
             {
                 $lookup: {
-                    from: "getbuslocation", // again for tolocation
-                    localField: "location_info.toLocation", // field from schedule_info to match on
-                    foreignField: "_id", // field in locationtable to match on
+                    from: "getbuslocation", // again for toLocation
+                    localField: "location_info.toLocation", // field from postbusschedule to match on
+                    foreignField: "_id", // field in getbuslocation to match on
                     as: "to_location_info" // new field with to location details
                 }
+            },
+            {
+                $project: {
+                    _id: 1,  // Include the booking model _id
+                    scheduleDetails: "$location_info", // Include location_info from postbusschedules
+                    fromLocationName: { $arrayElemAt: ["$from_location_info.name", 0] }, // Get the location name from from_location_info
+                    toLocationName: { $arrayElemAt: ["$to_location_info.name", 0] }, // Get the location name from to_location_info
+                    // Add any other fields you need from the booking model here
+                }
             }
+        ]);
 
-        ])
         if (mydata) {
             res.status(200).send(mydata);
         }
