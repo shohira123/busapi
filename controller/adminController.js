@@ -9,4 +9,4 @@ const adminlogin = async (req, res) => {
         console.log(error);
     }
 }
-module.export = { adminlogin }
+module.exports = { adminlogin }
