@@ -2,6 +2,7 @@ require("./db/conn");
 require("dotenv").config();
 const Route = require("./routes/Route");
 const usercontrollerRoute = require("./routes/usercontrollerRoute");
+const adminRoute = require("./routes/adminroute");
 const authenticateToken = require("./middleware/verifytoken");
 const express = require("express");
 
@@ -21,7 +22,7 @@ app.use(cors());
 
 app.use("/busapi", Route);
 app.use("/busapi/user", authenticateToken, usercontrollerRoute);
-app.use("/busapi/admin")
+app.use("/busapi/admin", adminRoute)
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}/busapi`)
