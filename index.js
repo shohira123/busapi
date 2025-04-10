@@ -21,6 +21,7 @@ app.use(cors());
 
 app.use("/busapi", Route);
 app.use("/busapi/user", authenticateToken, usercontrollerRoute);
+app.use("/busapi/admin")
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}/busapi`)
