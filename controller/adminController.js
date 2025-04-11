@@ -8,7 +8,7 @@ const adminlogin = async (req, res) => {
         const passuser = req.body.password;
         const mydata = await adminlogin_model.findOne({ "email": emailuser, "password": passuser })
         if (mydata === undefined || mydata === null) {
-            res.status(401).send({ msg: "user not match", result: false })
+            res.status(400).json({ msg: "user not match", result: false })
         }
         else {
             res.status(200).send({ msg: "User login successfully", result: true, data: mydata })
