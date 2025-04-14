@@ -19,6 +19,17 @@ const getAllLocation = async (req, res) => {
         console.log(error)
     }
 }
+
+const getAllVenders = async (req, res) => {
+    try {
+        const mydata = await vendor.find({})
+        console.log(mydata);
+        // res.status(200).json({msg:"get All products"})
+        res.status(200).json(mydata)
+    } catch (error) {
+        console.log(error)
+    }
+}
 const createLocation = async (req, res) => {
     try {
         const reqbody = new location(req.body);
@@ -342,4 +353,4 @@ const postBookSeat = async (req, res) => {
 //     res.status(200).json({msg:"get All products Testing"})
 // }
 
-module.exports = { getAllLocation, createLocation, createVendor, createbusschedule, searchbus, searchallbus, searchbusbyid, searchSeatById, booking, addnewuser, loginuser, updateSeatById, postBookSeat }
+module.exports = { getAllLocation, getAllVenders, createLocation, createVendor, createbusschedule, searchbus, searchallbus, searchbusbyid, searchSeatById, booking, addnewuser, loginuser, updateSeatById, postBookSeat }

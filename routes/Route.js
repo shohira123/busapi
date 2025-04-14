@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const { getAllLocation, createLocation, createVendor, createbusschedule, searchbus, searchallbus, searchbusbyid, searchSeatById, booking, addnewuser, loginuser, updateSeatById, postBookSeat } = require("../controller/Controller");
+const { getAllLocation, getAllVenders, createLocation, createVendor, createbusschedule, searchbus, searchallbus, searchbusbyid, searchSeatById, booking, addnewuser, loginuser, updateSeatById, postBookSeat } = require("../controller/Controller");
 
 router.route("/getLocations").get(getAllLocation);
 router.route("/createLocation").post(createLocation);
 router.route("/createVendor").post(createVendor);
+router.route("/getallvenders").get();
 router.route("/createBusSchecdule").post(createbusschedule);
 https://projectapi.gerasim.in/api/BusBooking/searchBus?fromLocation=1&toLocation=2&travelDate=2024-08-18
 router.route("/searchBus/:fromLocation/:toLocation/:travelDate").get(searchbus);

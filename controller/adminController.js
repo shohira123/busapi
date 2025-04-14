@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const adminlogin_model = require('../model/adminlogin');
+const schedule = require("../model/schedulebus");
 
 const adminlogin = async (req, res) => {
     try {
@@ -19,9 +20,22 @@ const adminlogin = async (req, res) => {
         res.status(400).send(error);
     }
 }
-// create schedule start
-const createSchedule = async (req, res) => {
-    console.log(req.body);
+// schedulebus start
+const createbusschedule = async (req, res) => {
+    try {
+        const reqbody = new schedule(req.body);
+        console.log(reqbody);
+        const insertquery = await reqbody.save();
+        if (insertquery) {
+            res.status(200).send({ msg: "schedule inserted successfully", result: true })
+
+        }
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
 }
+// schedulebus end
 // create schedule end
-module.exports = { adminlogin, createSchedule }
+module.exports = { adminlogin, createbusschedule }
