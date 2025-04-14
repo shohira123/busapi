@@ -19,4 +19,9 @@ const adminlogin = async (req, res) => {
         res.status(400).send(error);
     }
 }
-module.exports = { adminlogin }
+// create schedule start
+const createSchedule = async (req, res) => {
+    console.log(req.body);
+}
+// create schedule end
+module.exports = { adminlogin, createSchedule }
