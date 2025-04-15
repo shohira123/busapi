@@ -7,7 +7,7 @@ router.route("/getLocations").get(getAllLocation);
 router.route("/createLocation").post(createLocation);
 router.route("/createVendor").post(createVendor);
 router.route("/getallvenders").get(getAllVenders);
-router.route("/createBusSchecdule").post(createbusschedule);
+// router.route("/createBusSchecdule").post(createbusschedule);
 https://projectapi.gerasim.in/api/BusBooking/searchBus?fromLocation=1&toLocation=2&travelDate=2024-08-18
 router.route("/searchBus/:fromLocation/:toLocation/:travelDate").get(searchbus);
 router.route("/searchAllBus").get(searchallbus);
